@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <TextField fx:id="userName" layoutX="308.0" layoutY="277.0" onAction="#onAction" prefHeight="27.0" prefWidth="172.0" style="-fx-background-color: white; -fx-background-radius: 35; -fx-border-color: black; -fx-border-radius: 35;">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </TextField>
+      <Label layoutX="-1.0" layoutY="-3.0" prefHeight="79.0" prefWidth="600.0" style="-fx-background-color: #950a97;" text="                                      Live Chat">
+         <font>
+            <Font name="Calibri Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="234.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asseset/images.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="170.0" layoutY="272.0" prefHeight="37.0" prefWidth="124.0" text="Entre Your name  :">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.7582938388625592" endY="1.0" startX="0.4786729857819905">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.803600013256073" green="0.07559999823570251" blue="0.8399999737739563" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.803600013256073" green="0.07559999823570251" blue="0.8399999737739563" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.803600013256073" green="0.07559999823570251" blue="0.8399999737739563" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+   </children>
+</AnchorPane>
