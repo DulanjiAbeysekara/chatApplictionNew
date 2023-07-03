@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.ClientController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="566.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
+   <children>
+      <Label prefHeight="58.0" prefWidth="359.0" style="-fx-background-color: #950a97;" text="               Chat Room" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="58.0" prefHeight="508.0" prefWidth="359.0" style="-fx-background-color: bf6eab;">
+         <children>
+            <TextField layoutX="53.0" layoutY="446.0" prefHeight="29.0" prefWidth="205.0" style="-fx-background-radius: 6; -fx-border-radius: 6;" />
+            <ImageView fitHeight="37.0" fitWidth="46.0" layoutX="7.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asseset/istockphoto-931643150-170667a.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="316.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asseset/download%20(7).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="37.0" layoutX="269.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asseset/640px-Twemoji_1f600.svg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
