@@ -8,8 +8,46 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
-public class ClientController {
+import java.io.*;
+import java.net.Socket;
+
+public class ClientController extends  Thread{
+
+   /*public ScrollPane txtMsgShow;
+    public javafx.scene.layout.VBox vBox;
+    public TextField txtCht;
+    public AnchorPane emojiPane;
+    public Label lblName;*/
+
+    BufferedReader reader;
+    PrintWriter writer;
+    Socket socket;
+    private FileChooser fileChooser;
+    private File filePath;
+
+    public void initialize() throws IOException {
+        String userName=LoginController.User_name;
+        lblName.setText(userName);
+
+        try {
+            Socket socket=new Socket("localhost",4500);
+            System.out.println("socket connect server");
+            reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer=new PrintWriter(socket.getOutputStream(),true);
+
+            this.start();
+        }catch (IOException e){
+            e.printStackTrace();
+
+        }
+        emojiPane.setVisible(false);
+
+
+    }
+
+
 
     @FXML
     private AnchorPane emojiPane;
