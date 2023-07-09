@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -13,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 
 import javax.swing.text.Element;
@@ -20,7 +22,7 @@ import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 
-public class ClientController extends  Thread{
+public class ClientController extends  Thread {
 
    /*public ScrollPane txtMsgShow;
     public javafx.scene.layout.VBox vBox;
@@ -35,17 +37,17 @@ public class ClientController extends  Thread{
     private File filePath;
 
     public void initialize() throws IOException {
-        String userName=LoginController.User_name;
+        String userName = LoginController.User_name;
         lblName.setText(userName);
 
         try {
-            Socket socket=new Socket("localhost",4500);
+            Socket socket = new Socket("localhost", 4500);
             System.out.println("socket connect server");
-            reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            writer=new PrintWriter(socket.getOutputStream(),true);
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true);
 
             this.start();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
 
         }
@@ -53,57 +55,59 @@ public class ClientController extends  Thread{
 
 
     }
-        @Override
-        public void run() {
 
-            try {
-                while (true) {
+    @Override
+    public void run() {
 
-                    String msg=reader.readLine();
-                    String[] token=msg.split("");
-                    String cmd=token[0];
+        try {
+            while (true) {
 
-                    StringBuilder fullMsg=new StringBuilder();
+                String msg = reader.readLine();
+                String[] token = msg.split("");
+                String cmd = token[0];
 
-                    for(int i=0; i<token.length; i++){
-                        fullMsg.append(token[i]+"");
+                StringBuilder fullMsg = new StringBuilder();
 
-                    }
+                for (int i = 0; i < token.length; i++) {
+                    fullMsg.append(token[i] + "");
 
-                    String[] msgToAr=msg.split("");
-                    String st="";
+                }
 
-                    for (int i=0; i< msgToAr.length; i++){
-                         st+=msgToAr[i+1]+ "";
+                String[] msgToAr = msg.split("");
+                String st = "";
+
+                for (int i = 0; i < msgToAr.length; i++) {
+                    st += msgToAr[i + 1] + "";
 
 
                 }
-                    javafx.scene.text.Text text = new Text(st);
-                    String firstChars = "";
-                    if (st.length() > 3) {
-                        firstChars = st.substring(0, 3);
+                javafx.scene.text.Text text = new Text(st);
+                String firstChars = "";
+                if (st.length() > 3) {
+                    firstChars = st.substring(0, 3);
 
 
-                    }
+                }
 
-                    if (firstChars.equalsIgnoreCase("img")) ;
-
-                        st = st.substring(3, st.length() - 1);
+                if (firstChars.equalsIgnoreCase("img")) {
 
 
-                        File file = new File(st);
-                        javafx.scene.image.Image image = new Image(file.toURI().toString());
-
-                        javafx.scene.image.ImageView imageView = new ImageView(image);
+                    st = st.substring(3, st.length() - 1);
 
 
-                        imageView.setFitHeight(150);
-                        imageView.setFitWidth(200);
+                    File file = new File(st);
+                    javafx.scene.image.Image image = new Image(file.toURI().toString());
 
-                    HBox hBox=new HBox(10);
+                    ImageView imageView = new ImageView(image);
+
+
+                    imageView.setFitHeight(150);
+                    imageView.setFitWidth(200);
+
+                    HBox hBox = new HBox(10);
                     hBox.setAlignment(Pos.BOTTOM_RIGHT);
 
-                    if(!cmd.equalsIgnoreCase(lblName.getText())) {
+                    if (!cmd.equalsIgnoreCase(lblName.getText())) {
 
                         vBox.setAlignment(Pos.TOP_LEFT);
                         hBox.setAlignment(Pos.CENTER_LEFT);
@@ -112,129 +116,148 @@ public class ClientController extends  Thread{
                         hBox.getChildren().add(text1);
                         hBox.getChildren().add(imageView);
 
-                    }else{
+                    } else {
                         hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(imageView);
+                        Text text1 = new Text("");
+                        hBox.getChildren().add(text1);
+
+                    }
+
+                    Platform.runLater(() -> vBox.getChildren().addAll(hBox));
+
+                } else {
+
+                    TextFlow tempFlow = new TextFlow();
+
+                    if(!cmd.equalsIgnoreCase((lblName.getText()+" : "))){
+                        Text txtName=new Text(cmd+"");
+                            txtName.getStyleClass().add("txtName");
+                            tempFlow.getChildren().add(txtName);
+
+                            tempFlow.setStyle("");
+
 
                     }
 
 
 
-                    }
 
-
-
-                } catch (IOException ioException) {
-                ioException.printStackTrace();
+                }
             }
-        } catch (IOException e) {
+
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+    }
+
+
+
+        @FXML
+        private AnchorPane emojiPane;
+
+        @FXML
+        private Label lblName;
+
+        @FXML
+        private TextField txtCht;
+
+        @FXML
+        private ScrollPane txtMsgShow;
+
+        @FXML
+        private VBox vBox;
+
+        @FXML
+        void bigSmile (MouseEvent event){
+
         }
 
+        @FXML
+        void btnCloseOnAction (MouseEvent event){
 
-    @FXML
-    private AnchorPane emojiPane;
+        }
 
-    @FXML
-    private Label lblName;
+        @FXML
+        void btnEmojiOnAction (MouseEvent event){
 
-    @FXML
-    private TextField txtCht;
+        }
 
-    @FXML
-    private ScrollPane txtMsgShow;
+        @FXML
+        void btnGalleryOnAction (MouseEvent event){
 
-    @FXML
-    private VBox vBox;
+        }
 
-    @FXML
-    void bigSmile(MouseEvent event) {
+        @FXML
+        void btnSendMsgOnAction (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void btnCloseOnAction(MouseEvent event) {
+        @FXML
+        void emojiPaneOnAction (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void btnEmojiOnAction(MouseEvent event) {
+        @FXML
+        void heart (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void btnGalleryOnAction(MouseEvent event) {
+        @FXML
+        void love (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void btnSendMsgOnAction(MouseEvent event) {
+        @FXML
+        void money (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void emojiPaneOnAction(MouseEvent event) {
+        @FXML
+        void mouseOnClickHideEmoji (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void heart(MouseEvent event) {
+        @FXML
+        void oneEye (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void love(MouseEvent event) {
+        @FXML
+        void sad (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void money(MouseEvent event) {
+        @FXML
+        void smalleSmile (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void mouseOnClickHideEmoji(MouseEvent event) {
+        @FXML
+        void teethSmile (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void oneEye(MouseEvent event) {
+        @FXML
+        void tongSmile (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void sad(MouseEvent event) {
+        @FXML
+        void tuin (MouseEvent event){
 
-    }
+        }
 
-    @FXML
-    void smalleSmile(MouseEvent event) {
+        @FXML
+        void txtChtOnAction (ActionEvent event){
 
-    }
+        }
 
-    @FXML
-    void teethSmile(MouseEvent event) {
+        @FXML
+        void verySad (MouseEvent event){
 
-    }
-
-    @FXML
-    void tongSmile(MouseEvent event) {
+        }
 
     }
 
-    @FXML
-    void tuin(MouseEvent event) {
-
-    }
-
-    @FXML
-    void txtChtOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void verySad(MouseEvent event) {
-
-    }
-
-}
