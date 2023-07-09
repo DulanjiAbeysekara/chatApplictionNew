@@ -46,7 +46,38 @@ public class ClientController extends  Thread{
 
 
     }
+        @Override
+        public void run() {
 
+            try {
+                while (true) {
+
+                    String msg=reader.readLine();
+                    String[] token=msg.split("");
+                    String cmd=token[0];
+
+                    StringBuilder fullMsg=new StringBuilder();
+
+                    for(int i=0; i<token.length; i++){
+                        fullMsg.append(token[i]+"");
+
+                    }
+
+                    String[] msgToAr=msg.split("");
+                    String st="";
+
+                    for (int i=0; i< msgToAr.length; i++){
+                         st+=msgToAr[i+1]+ "";
+
+
+                }
+
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     @FXML
