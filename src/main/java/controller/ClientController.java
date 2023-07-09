@@ -2,14 +2,21 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
+import javax.swing.text.Element;
+import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 
@@ -71,10 +78,55 @@ public class ClientController extends  Thread{
 
 
                 }
+                    javafx.scene.text.Text text = new Text(st);
+                    String firstChars = "";
+                    if (st.length() > 3) {
+                        firstChars = st.substring(0, 3);
 
 
-                }
-            } catch (IOException e) {
+                    }
+
+                    if (firstChars.equalsIgnoreCase("img")) ;
+
+                        st = st.substring(3, st.length() - 1);
+
+
+                        File file = new File(st);
+                        javafx.scene.image.Image image = new Image(file.toURI().toString());
+
+                        javafx.scene.image.ImageView imageView = new ImageView(image);
+
+
+                        imageView.setFitHeight(150);
+                        imageView.setFitWidth(200);
+
+                    HBox hBox=new HBox(10);
+                    hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+                    if(!cmd.equalsIgnoreCase(lblName.getText())) {
+
+                        vBox.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+
+                        Text text1 = new Text("" + cmd + " : ");
+                        hBox.getChildren().add(text1);
+                        hBox.getChildren().add(imageView);
+
+                    }else{
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+                    }
+
+
+
+                    }
+
+
+
+                } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (IOException e) {
                 e.printStackTrace();
             }
         }
