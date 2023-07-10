@@ -225,6 +225,10 @@ public class ClientController extends  Thread {
         @FXML
         void btnGalleryOnAction (MouseEvent event){
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            fileChooser=new FileChooser();
+            fileChooser.setTitle("Open Image");
+            this.filePath=fileChooser.showOpenDialog(stage);
+            writer.println(lblName.getText()+""+"img"+filePath.getPath());
 
         }
 
