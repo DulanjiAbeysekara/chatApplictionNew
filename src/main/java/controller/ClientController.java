@@ -3,7 +3,9 @@ package controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -16,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.swing.text.Element;
 import java.awt.*;
@@ -135,12 +138,45 @@ public class ClientController extends  Thread {
                             txtName.getStyleClass().add("txtName");
                             tempFlow.getChildren().add(txtName);
 
-                            tempFlow.setStyle("");
-
+                        tempFlow.setStyle("-fx-color: rgb(239,242,255);" +
+                                "-fx-background-color: rgb(48,224,224);" +
+                                " -fx-background-radius: 10px");
+                        tempFlow.setPadding(new Insets(3,10,3,10));
 
                     }
+                        tempFlow.getChildren().add(text);
+                        tempFlow.setMaxWidth(200);
+
+                        TextFlow flow=new TextFlow(tempFlow);
 
 
+                        HBox hBox=new HBox(12);
+
+
+                        if(!cmd.equalsIgnoreCase(lblName.getText()+":")){
+
+                            vBox.setAlignment(Pos.TOP_LEFT);
+                            hBox.setAlignment(Pos.CENTER_LEFT);
+                            hBox.getChildren().add(flow);
+
+                        }else {
+
+                            Text text2 = new Text(fullMsg + "");
+                            TextFlow flow2 = new TextFlow(text2);
+
+                            hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                            hBox.getChildren().add(flow2);
+                            hBox.setPadding(new Insets(2, 5, 2, 10));
+
+
+                            flow2.setStyle("-fx-color: rgb(239,242,255);" +
+                                    "-fx-background-color: rgb(9,241,148);" +
+                                    "-fx-background-radius: 10px");
+                            flow2.setPadding(new Insets(3,10,3,10));
+
+                        }
+
+                    Platform.runLater(() -> vBox.getChildren().addAll(hBox));
 
 
                 }
@@ -176,16 +212,19 @@ public class ClientController extends  Thread {
 
         @FXML
         void btnCloseOnAction (MouseEvent event){
+            System.exit(0);
 
         }
 
         @FXML
         void btnEmojiOnAction (MouseEvent event){
+            emojiPane.setVisible(true);
 
         }
 
         @FXML
         void btnGalleryOnAction (MouseEvent event){
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
 
         }
 
@@ -216,6 +255,7 @@ public class ClientController extends  Thread {
 
         @FXML
         void mouseOnClickHideEmoji (MouseEvent event){
+            emojiPane.setVisible(false);
 
         }
 
@@ -251,6 +291,16 @@ public class ClientController extends  Thread {
 
         @FXML
         void txtChtOnAction (ActionEvent event){
+
+            String msg=txtCht.getText();
+            writer.println(lblName.getText()+" : "+msg);
+
+            txtCht.clear();
+
+            if (msg.equalsIgnoreCase("BYE") ||(msg.equalsIgnoreCase("logout"))){
+                System.exit(0);
+
+            }
 
         }
 
