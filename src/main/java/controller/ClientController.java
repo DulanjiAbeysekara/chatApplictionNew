@@ -274,6 +274,9 @@ public class ClientController extends  Thread {
 
         @FXML
         void oneEye (MouseEvent event){
+            String emoji=new String(Character.toChars(128540));
+            txtCht.setText(emoji);
+            emojiPane.setVisible(false);
 
         }
 
