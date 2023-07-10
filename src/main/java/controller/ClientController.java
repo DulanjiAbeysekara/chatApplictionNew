@@ -234,6 +234,15 @@ public class ClientController extends  Thread {
 
         @FXML
         void btnSendMsgOnAction (MouseEvent event){
+            String msg=txtCht.getText();
+            writer.println(lblName.getText()+" : "+msg);
+
+            txtCht.clear();
+
+            if(msg.equalsIgnoreCase("BYE")||(msg.equalsIgnoreCase("Logout"))){
+                System.exit(0);
+
+            }
 
         }
 
