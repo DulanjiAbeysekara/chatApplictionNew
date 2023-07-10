@@ -256,7 +256,7 @@ public class ClientController extends  Thread {
 
         @FXML
         void heart (MouseEvent event){
-            String emoji=new String(Character.toChars(128514));
+            String emoji=new String(Character.toChars(128560));
             txtCht.setText(emoji);
             emojiPane.setVisible(false);
 
@@ -314,16 +314,27 @@ public class ClientController extends  Thread {
 
         @FXML
         void teethSmile (MouseEvent event){
+            String emoji=new String(Character.toChars(128513));
+            txtCht.setText(emoji);
+            emojiPane.setVisible(false);
 
         }
 
         @FXML
         void tongSmile (MouseEvent event){
+            String emoji=new String(Character.toChars(128539));
+            txtCht.setText(emoji);
+            emojiPane.setVisible(false);
+
 
         }
 
         @FXML
         void tuin (MouseEvent event){
+            String emoji=new String(Character.toChars(128519));
+            txtCht.setText(emoji);
+            emojiPane.setVisible(false);
+
 
         }
 
@@ -344,8 +355,9 @@ public class ClientController extends  Thread {
 
         @FXML
         void verySad (MouseEvent event){
-
-        }
+            String emoji=new String(Character.toChars(128550));
+            txtCht.setText(emoji);
+            emojiPane.setVisible(false);        }
 
     }
 
